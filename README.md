@@ -23,9 +23,9 @@ Authors: [Yinghui He](https://ying-hui-he.github.io/), [Abhishek Panigrahi](http
 
 ## 🧩 Part 1: Skill-Targeted Training Data
 We conducted adaptive training data selection for three models: Llama-3.2-3B-Instruct, Llama-3.2-1B-Instruct, and Qwen2.5-3B. 
-The model-specific training data are provided under **`STAT_data/`**. Each dataset contain roughly 4k unique questions, 9.5k QA pairs.
+The model-specific training data are provided under [**`STAT_data/`**](STAT_data/). Each dataset contain roughly 4k unique questions, 9.5k QA pairs.
 
-We create two sets of training data (**STAT-Sel** and **STAT-Syn**) for each model using two method variants:
+We create two sets of training data ([**`STAT-Sel/`**](STAT_data/STAT-Sel/) and [**`STAT-Syn/`**](STAT_data/STAT-Syn/)) for each model using two method variants:
 ### STAT-Sel: Simply reweighting the hendrycks MATH dataset in favor of missing skills
 1. We begin by filtering 500 difficult questions from the validation set using our process reward model. For each such question, the teacher model identifies 2–3 missing skills in the student’s response. 
 

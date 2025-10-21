@@ -41,13 +41,13 @@ We create two sets of training data (**STAT-Sel** and **STAT-Syn**) for each mod
 3. We then filter the newly synthesized data by:
 
 
-    a. **Compute consistency scores** for each set of `(new_question, solution)` pairs, according to the number of solutions agreeing on the final answer. For example, a new question with 2 solutions agreeing on the final answer has a consistency score of 2.
+    a. Compute consistency scores for each set of `(new_question, solution)` pairs, according to the number of solutions agreeing on the final answer. For example, a new question with 2 solutions agreeing on the final answer has a consistency score of 2.
 
-    b. **Keep only the** `new_question` **with a consistency score of ≥ 2.**
+    b. Keep only the `new_question` ith a consistency score of ≥ 2.
 
-    c. **For each filtered question, keep only the** `solution` **that agrees on the final answer.**
+    c. For each filtered question, keep only the `solution` that agrees on the final answer.
 
-This process enables our approach to generate diverse data, as we input 3 questions to the teacher model as references each time. The consistency-filtering step filters out both invalid questions and solutions, ensuring the quality of **STAT-Syn**.
+This process enables our approach to generate diverse data, as we input 3 questions to the teacher model as references each time. The consistency-filtering step filters out both invalid questions and solutions, ensuring the quality of STAT-Syn.
 
 
 ## Issues & Questions
@@ -61,7 +61,7 @@ If you find our work useful, please consider citing it! 🤗
 @article{he2025skilltargetedadaptivetraining,
   title={Skill-Targeted Adaptive Training}, 
   author={Yinghui He and Abhishek Panigrahi and Yong Lin and Sanjeev Arora},
-  journal={arXiv preprint arXiv:2505.00147},
+  journal={arXiv preprint arXiv:2510.10023},
   year={2025},
   url={https://arxiv.org/abs/2510.10023}, 
 }

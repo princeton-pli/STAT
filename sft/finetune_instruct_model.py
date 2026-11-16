@@ -11,7 +11,7 @@ from transformers import (
     pipeline,
 )
 from peft import LoraConfig, PeftModel, get_peft_model
-from trl import SFTTrainer
+from trl import SFTConfig, SFTTrainer
 
 def get_args():
     """Parses command-line arguments."""
@@ -181,7 +181,7 @@ def main():
     # ---------------------------------------------------------------------------------
 
     # Configure training arguments
-    training_arguments = TrainingArguments(
+    training_arguments = SFTConfig(
         output_dir=output_dir,
         num_train_epochs=args.num_train_epochs,
         per_device_train_batch_size=args.per_device_train_batch_size,
@@ -197,9 +197,13 @@ def main():
         max_grad_norm=0.3,
         max_steps=-1,
         warmup_ratio=0.03,
+        weight_decay=0.1,
         group_by_length=True,
-        report_to="wandb",
+        report_to="none",
         run_name=run_name,
+        dataset_text_field="text",
+        max_length=args.max_seq_length,
+        packing=PACKING,
     )
 
     # Initialize the SFTTrainer
@@ -207,11 +211,8 @@ def main():
         model=model,
         train_dataset=final_dataset,
         peft_config=peft_config,
-        dataset_text_field="text",
-        max_seq_length=args.max_seq_length,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_arguments,
-        packing=PACKING,
     )
 
     # Start training

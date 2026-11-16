@@ -11,7 +11,7 @@ from transformers import (
     pipeline,
 )
 from peft import LoraConfig, PeftModel, get_peft_model
-from trl import SFTTrainer
+from trl import SFTConfig, SFTTrainer
 
 def get_args():
     """Parses command-line arguments."""
@@ -30,22 +30,22 @@ def get_args():
 # ---------------------------------------------------------------------------------
 # Data Formatting
 # ---------------------------------------------------------------------------------
-def format_dataset_to_messages(examples):
+def format_dataset_to_text(examples):
     """
-    Formats a dataset with 'question', 'solution' columns
-    into a list of messages suitable for a chat model.
+    Formats a dataset with 'question', 'solution' columns into raw text
+    for base-model style SFT (no chat template). The model learns to
+    continue with the solution after "{instruction}\n{question}".
     """
     formatted_texts = []
     for i in range(len(examples['question'])):
-        instruction = "Please reason step by step, and put your final answer within \\boxed{{}}"
+        instruction = "Please reason step by step, and put your final answer within \\boxed{}"
         input_text = examples['question'][i]
         output_text = examples['solution'][i]
 
         # Concatenate instruction, input, and output directly for a base model
-        # You might add separators like "\n\n### Instruction:\n" if you prefer
         text = f"{instruction}\n{input_text}\n{output_text}"
         formatted_texts.append(text.strip())
-    return {"messages": formatted_texts}
+    return {"text": formatted_texts}
 
 def main():
     args = get_args()
@@ -104,13 +104,8 @@ def main():
         tokenizer.pad_token = tokenizer.eos_token
         tokenizer.pad_token_id = tokenizer.eos_token_id
         
-    # Apply formatting and then the model-specific chat template
-    formatted_dataset = dataset.map(format_dataset_to_messages, batched=True)
-    
-    def apply_chat_template_func(examples):
-        return {"text": [tokenizer.apply_chat_template(msgs, tokenize=False) for msgs in examples["messages"]]}
-
-    final_dataset = formatted_dataset.map(apply_chat_template_func, batched=True, remove_columns=dataset.column_names)
+    # Apply formatting for base-model style raw-text SFT
+    final_dataset = dataset.map(format_dataset_to_text, batched=True, remove_columns=dataset.column_names)
 
     print("\n--- Sample of final formatted dataset ---")
     print(final_dataset[0]['text'])
@@ -175,7 +170,7 @@ def main():
     # ---------------------------------------------------------------------------------
 
     # Configure training arguments
-    training_arguments = TrainingArguments(
+    training_arguments = SFTConfig(
         output_dir=output_dir,
         num_train_epochs=args.num_train_epochs,
         per_device_train_batch_size=args.per_device_train_batch_size,
@@ -191,9 +186,13 @@ def main():
         max_grad_norm=0.3,
         max_steps=-1,
         warmup_ratio=0.03,
+        weight_decay=0.1,
         group_by_length=True,
-        report_to="wandb",
+        report_to="none",
         run_name=run_name,
+        dataset_text_field="text",
+        max_length=args.max_seq_length,
+        packing=PACKING,
     )
 
     # Initialize the SFTTrainer
@@ -201,11 +200,8 @@ def main():
         model=model,
         train_dataset=final_dataset,
         peft_config=peft_config,
-        dataset_text_field="text",
-        max_seq_length=args.max_seq_length,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_arguments,
-        packing=PACKING,
     )
 
     # Start training

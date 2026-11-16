@@ -14,7 +14,7 @@ OUTPUT_DIR="./output/finetuned_adapters/${MODEL_NAME}/sft_${DATA_NAME}_${MODEL_N
 
 echo "Training $MODEL_NAME on $DATA_NAME data"
 
-python sft/finetune_base_model.py \
+python sft/finetune_instruct_model.py \
     --model_id ${MODEL_PATH} \
     --dataset_path "./STAT_data/${DATA_NAME}/${DATA_NAME}_${MODEL_NAME}_9.5k.json" \
     --output_dir ${OUTPUT_DIR} \

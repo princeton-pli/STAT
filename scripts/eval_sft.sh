@@ -27,7 +27,15 @@ echo "OUTPUT_FILENAME=${OUTPUT_FILENAME}"
 
 BASE_OUTPUT_FILENAME="base_model_results_${TEST_DATA_NAME}_pass${NUM_GENERATED_SAMPLES}_${TEMPERATURE}.jsonl"
 
-python sft/eval_sft.py \
+# Instruct models were trained/evaluated with the chat template; base models with raw text
+if [[ "$BASE_MODEL_NAME" == *"Instruct"* ]]; then
+    EVAL_SCRIPT="sft/eval_instruct_model.py"
+else
+    EVAL_SCRIPT="sft/eval_base_model.py"
+fi
+echo "EVAL_SCRIPT=${EVAL_SCRIPT}"
+
+python ${EVAL_SCRIPT} \
     --base_model_id ${BASE_MODEL_PATH} \
     --data_name ${TRAIN_DATA_NAME} \
     --adapter_path ${ADAPTER_PATH} \

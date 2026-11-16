@@ -15,8 +15,9 @@ from tqdm import tqdm
 from transformers import GenerationConfig
 import torch
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from evaluation import parser
-from evaluation import grader
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'eval')))
+from eval import parser
+from eval import grader
 
 def get_args():
     """Parses command-line arguments."""

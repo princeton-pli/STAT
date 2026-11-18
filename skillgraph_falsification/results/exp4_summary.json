@@ -1,0 +1,579 @@
+{
+ "per_size": {
+  "70m": {
+   "n_params": 70426624,
+   "L": 3.130638449206982,
+   "mean_pair_acc": 0.21599344074097768,
+   "mean_inner_acc": 0.32807027879072215,
+   "mean_outer_acc": 0.36171311105424403,
+   "glm": {
+    "params": {
+     "const": 3.2033565959679686,
+     "log_f12": 0.20654999800582574,
+     "log_f_outer": -1.0453804075806816,
+     "log_f_inner": -0.18969437363586583,
+     "c_inner": 1.2615219104368618,
+     "c_outer": 2.706006915581382
+    },
+    "bse": {
+     "const": 2.3257147537288216,
+     "log_f12": 0.22777237909630974,
+     "log_f_outer": 0.34622920782326466,
+     "log_f_inner": 0.2476962355473079,
+     "c_inner": 0.5518806403424117,
+     "c_outer": 0.4231596921484426
+    },
+    "pvalues": {
+     "const": 0.16839962830369648,
+     "log_f12": 0.36449862666444555,
+     "log_f_outer": 0.0025333400414309683,
+     "log_f_inner": 0.4437746609735318,
+     "c_inner": 0.022262447019770763,
+     "c_outer": 1.6079414189901843e-10
+    },
+    "beta1": 0.20654999800582574,
+    "beta1_ci": [
+     -0.2398756616959452,
+     0.6529756577075967
+    ],
+    "beta1_p": 0.36449862666444555,
+    "beta1_p_one_sided_pos": 0.18224931333222277
+   },
+   "glm_default_counts": {
+    "params": {
+     "const": 1.49785528677674,
+     "log_f12": -0.08343542554172956,
+     "log_f_outer": -0.8375328144125693,
+     "log_f_inner": 0.011662674065383849,
+     "c_inner": 1.3987674650516833,
+     "c_outer": 2.648640512379266
+    },
+    "bse": {
+     "const": 1.7445321327406715,
+     "log_f12": 0.09552469879758103,
+     "log_f_outer": 0.29752276690664287,
+     "log_f_inner": 0.1658648216912691,
+     "c_inner": 0.5261476793249478,
+     "c_outer": 0.4161096620604521
+    },
+    "pvalues": {
+     "const": 0.39056123886943817,
+     "log_f12": 0.3824213993194747,
+     "log_f_outer": 0.004877405802335484,
+     "log_f_inner": 0.9439434758109948,
+     "c_inner": 0.007848764196631901,
+     "c_outer": 1.9497652472789037e-10
+    },
+    "beta1": -0.08343542554172956,
+    "beta1_ci": [
+     -0.270660394819025,
+     0.10378954373556587
+    ],
+    "beta1_p": 0.3824213993194747,
+    "beta1_p_one_sided_pos": 0.8087893003402626
+   },
+   "item_logit": {
+    "beta1": 0.32040542875177996,
+    "beta1_ci": [
+     -0.6675375232002074,
+     1.3083483807037675
+    ],
+    "beta1_p": 0.525006444275421
+   },
+   "tercile": {
+    "low_minus_high": 0.004139061333146825,
+    "ci95": [
+     -0.07731311492606038,
+     0.08709330719724151
+    ],
+    "n_low": 12,
+    "n_high": 12,
+    "cuts": [
+     76.99999999999999,
+     223.66666666666666
+    ]
+   },
+   "error_attribution": {
+    "other": 0.4920886075949367,
+    "skip_outer": 0.12025316455696203,
+    "skip_inner": 0.3876582278481013
+   },
+   "spearman_acc_logf12": -0.44268319148007185,
+   "rows": [
+    {
+     "pair": "comparative|opposite",
+     "outer": "comparative",
+     "inner": "opposite",
+     "n": 30,
+     "acc": 0.16666666666666666,
+     "cont": 0.16162265740694345,
+     "c_inner": 0.43333333333333335,
+     "c_outer": 0.43333333333333335,
+     "f12": 498,
+     "f1": 1871533,
+     "f2": 731191
+    },
+    {
+     "pair": "continent|country_of_capital",
+     "outer": "continent",
+     "inner": "country_of_capital",
+     "n": 33,
+     "acc": 0.09090909090909091,
+     "cont": 0.2054347625149388,
+     "c_inner": 0.6363636363636364,
+     "c_outer": 0.09090909090909091,
+     "f12": 245,
+     "f1": 1393220,
+     "f2": 45067
+    },
+    {
+     "pair": "currency|country_of_capital",
+     "outer": "currency",
+     "inner": "country_of_capital",
+     "n": 33,
+     "acc": 0.18181818181818182,
+     "cont": 0.18022891276743933,
+     "c_inner": 0.7575757575757576,
+     "c_outer": 0.3333333333333333,
+     "f12": 41,
+     "f1": 188718,
+     "f2": 45067
+    },
+    {
+     "pair": "first_letter|baby_animal",
+     "outer": "first_letter",
+     "inner": "baby_animal",
+     "n": 18,
+     "acc": 0.2222222222222222,
+     "cont": 0.21866705433569578,
+     "c_inner": 0.2222222222222222,
+     "c_outer": 0.5,
+     "f12": 2,
+     "f1": 165789,
+     "f2": 10928
+    },
+    {
+     "pair": "first_letter|capital",
+     "outer": "first_letter",
+     "inner": "capital",
+     "n": 33,
+     "acc": 0.15151515151515152,
+     "cont": 0.23516972443551726,
+     "c_inner": 0.5454545454545454,
+     "c_outer": 0.36363636363636365,
+     "f12": 129,
+     "f1": 165789,
+     "f2": 1223613
+    },
+    {
+     "pair": "first_letter|color_of",
+     "outer": "first_letter",
+     "inner": "color_of",
+     "n": 18,
+     "acc": 0.0,
+     "cont": 0.12792746014179499,
+     "c_inner": 0.2777777777777778,
+     "c_outer": 0.0,
+     "f12": 501,
+     "f1": 165789,
+     "f2": 1693033
+    },
+    {
+     "pair": "first_letter|continent",
+     "outer": "first_letter",
+     "inner": "continent",
+     "n": 33,
+     "acc": 0.3939393939393939,
+     "cont": 0.3230344295249025,
+     "c_inner": 0.12121212121212122,
+     "c_outer": 0.7878787878787878,
+     "f12": 122,
+     "f1": 165789,
+     "f2": 1393220
+    },
+    {
+     "pair": "first_letter|country_of_capital",
+     "outer": "first_letter",
+     "inner": "country_of_capital",
+     "n": 33,
+     "acc": 0.30303030303030304,
+     "cont": 0.30266614405241576,
+     "c_inner": 0.696969696969697,
+     "c_outer": 0.7575757575757576,
+     "f12": 22,
+     "f1": 165789,
+     "f2": 45067
+    },
+    {
+     "pair": "first_letter|currency",
+     "outer": "first_letter",
+     "inner": "currency",
+     "n": 33,
+     "acc": 0.21212121212121213,
+     "cont": 0.19414695983031469,
+     "c_inner": 0.3939393939393939,
+     "c_outer": 0.6060606060606061,
+     "f12": 26,
+     "f1": 165789,
+     "f2": 188718
+    },
+    {
+     "pair": "first_letter|language",
+     "outer": "first_letter",
+     "inner": "language",
+     "n": 33,
+     "acc": 0.5151515151515151,
+     "cont": 0.38480588140882666,
+     "c_inner": 0.45454545454545453,
+     "c_outer": 0.6666666666666666,
+     "f12": 17,
+     "f1": 165789,
+     "f2": 136057
+    },
+    {
+     "pair": "first_letter|next_day",
+     "outer": "first_letter",
+     "inner": "next_day",
+     "n": 7,
+     "acc": 0.14285714285714285,
+     "cont": 0.12928985003202922,
+     "c_inner": 0.14285714285714285,
+     "c_outer": 0.2857142857142857,
+     "f12": 157,
+     "f1": 165789,
+     "f2": 580608
+    },
+    {
+     "pair": "first_letter|number_word",
+     "outer": "first_letter",
+     "inner": "number_word",
+     "n": 12,
+     "acc": 0.08333333333333333,
+     "cont": 0.20231066089680183,
+     "c_inner": 0.25,
+     "c_outer": 0.5,
+     "f12": 952,
+     "f1": 165789,
+     "f2": 445703
+    },
+    {
+     "pair": "first_letter|opposite",
+     "outer": "first_letter",
+     "inner": "opposite",
+     "n": 30,
+     "acc": 0.0,
+     "cont": 0.143214884446337,
+     "c_inner": 0.26666666666666666,
+     "c_outer": 0.4666666666666667,
+     "f12": 140,
+     "f1": 165789,
+     "f2": 731191
+    },
+    {
+     "pair": "first_letter|to_french",
+     "outer": "first_letter",
+     "inner": "to_french",
+     "n": 28,
+     "acc": 0.21428571428571427,
+     "cont": 0.2556007461899798,
+     "c_inner": 0.21428571428571427,
+     "c_outer": 0.6071428571428571,
+     "f12": 306,
+     "f1": 165789,
+     "f2": 656849
+    },
+    {
+     "pair": "language|country_of_capital",
+     "outer": "language",
+     "inner": "country_of_capital",
+     "n": 33,
+     "acc": 0.5757575757575758,
+     "cont": 0.5357594994970384,
+     "c_inner": 0.696969696969697,
+     "c_outer": 0.45454545454545453,
+     "f12": 226,
+     "f1": 136057,
+     "f2": 45067
+    },
+    {
+     "pair": "last_letter|baby_animal",
+     "outer": "last_letter",
+     "inner": "baby_animal",
+     "n": 18,
+     "acc": 0.05555555555555555,
+     "cont": 0.14283253725759315,
+     "c_inner": 0.2222222222222222,
+     "c_outer": 0.05555555555555555,
+     "f12": 0,
+     "f1": 79168,
+     "f2": 10928
+    },
+    {
+     "pair": "last_letter|capital",
+     "outer": "last_letter",
+     "inner": "capital",
+     "n": 33,
+     "acc": 0.5757575757575758,
+     "cont": 0.41202632153361085,
+     "c_inner": 0.5151515151515151,
+     "c_outer": 0.696969696969697,
+     "f12": 95,
+     "f1": 79168,
+     "f2": 1223613
+    },
+    {
+     "pair": "last_letter|color_of",
+     "outer": "last_letter",
+     "inner": "color_of",
+     "n": 18,
+     "acc": 0.3333333333333333,
+     "cont": 0.3175261618438884,
+     "c_inner": 0.16666666666666666,
+     "c_outer": 0.5,
+     "f12": 115,
+     "f1": 79168,
+     "f2": 1693033
+    },
+    {
+     "pair": "last_letter|country_of_capital",
+     "outer": "last_letter",
+     "inner": "country_of_capital",
+     "n": 33,
+     "acc": 0.3939393939393939,
+     "cont": 0.3605735296736159,
+     "c_inner": 0.6060606060606061,
+     "c_outer": 0.48484848484848486,
+     "f12": 5,
+     "f1": 79168,
+     "f2": 45067
+    },
+    {
+     "pair": "last_letter|currency",
+     "outer": "last_letter",
+     "inner": "currency",
+     "n": 33,
+     "acc": 0.2727272727272727,
+     "cont": 0.23181180809144125,
+     "c_inner": 0.36363636363636365,
+     "c_outer": 0.24242424242424243,
+     "f12": 26,
+     "f1": 79168,
+     "f2": 188718
+    },
+    {
+     "pair": "last_letter|language",
+     "outer": "last_letter",
+     "inner": "language",
+     "n": 33,
+     "acc": 0.18181818181818182,
+     "cont": 0.19590372077036888,
+     "c_inner": 0.48484848484848486,
+     "c_outer": 0.21212121212121213,
+     "f12": 11,
+     "f1": 79168,
+     "f2": 136057
+    },
+    {
+     "pair": "last_letter|next_day",
+     "outer": "last_letter",
+     "inner": "next_day",
+     "n": 7,
+     "acc": 1.0,
+     "cont": 0.9690185645860762,
+     "c_inner": 0.2857142857142857,
+     "c_outer": 1.0,
+     "f12": 140,
+     "f1": 79168,
+     "f2": 580608
+    },
+    {
+     "pair": "last_letter|number_word",
+     "outer": "last_letter",
+     "inner": "number_word",
+     "n": 12,
+     "acc": 0.25,
+     "cont": 0.2451479127265699,
+     "c_inner": 0.08333333333333333,
+     "c_outer": 0.16666666666666666,
+     "f12": 219,
+     "f1": 79168,
+     "f2": 445703
+    },
+    {
+     "pair": "last_letter|opposite",
+     "outer": "last_letter",
+     "inner": "opposite",
+     "n": 30,
+     "acc": 0.16666666666666666,
+     "cont": 0.20297128018732227,
+     "c_inner": 0.16666666666666666,
+     "c_outer": 0.2,
+     "f12": 64,
+     "f1": 79168,
+     "f2": 731191
+    },
+    {
+     "pair": "last_letter|to_french",
+     "outer": "last_letter",
+     "inner": "to_french",
+     "n": 29,
+     "acc": 0.10344827586206896,
+     "cont": 0.14185831702085608,
+     "c_inner": 0.2413793103448276,
+     "c_outer": 0.1724137931034483,
+     "f12": 202,
+     "f1": 79168,
+     "f2": 656849
+    },
+    {
+     "pair": "number_word|double",
+     "outer": "number_word",
+     "inner": "double",
+     "n": 12,
+     "acc": 0.0,
+     "cont": 0.14136230844208575,
+     "c_inner": 0.08333333333333333,
+     "c_outer": 0.25,
+     "f12": 434,
+     "f1": 445703,
+     "f2": 1564747
+    },
+    {
+     "pair": "number_word|successor",
+     "outer": "number_word",
+     "inner": "successor",
+     "n": 12,
+     "acc": 0.08333333333333333,
+     "cont": 0.18783295647103124,
+     "c_inner": 0.3333333333333333,
+     "c_outer": 0.4166666666666667,
+     "f12": 87,
+     "f1": 445703,
+     "f2": 151912
+    },
+    {
+     "pair": "past_tense|opposite",
+     "outer": "past_tense",
+     "inner": "opposite",
+     "n": 32,
+     "acc": 0.15625,
+     "cont": 0.22497498200159777,
+     "c_inner": 0.34375,
+     "c_outer": 0.34375,
+     "f12": 190,
+     "f1": 91142,
+     "f2": 731191
+    },
+    {
+     "pair": "plural|baby_animal",
+     "outer": "plural",
+     "inner": "baby_animal",
+     "n": 18,
+     "acc": 0.1111111111111111,
+     "cont": 0.16429082447646506,
+     "c_inner": 0.1111111111111111,
+     "c_outer": 0.16666666666666666,
+     "f12": 0,
+     "f1": 64851,
+     "f2": 10928
+    },
+    {
+     "pair": "successor|double",
+     "outer": "successor",
+     "inner": "double",
+     "n": 12,
+     "acc": 0.08333333333333333,
+     "cont": 0.18159464722227145,
+     "c_inner": 0.08333333333333333,
+     "c_outer": 0.5,
+     "f12": 347,
+     "f1": 151912,
+     "f2": 1564747
+    },
+    {
+     "pair": "to_french|color_of",
+     "outer": "to_french",
+     "inner": "color_of",
+     "n": 18,
+     "acc": 0.05555555555555555,
+     "cont": 0.045426854140400645,
+     "c_inner": 0.2222222222222222,
+     "c_outer": 0.05555555555555555,
+     "f12": 756,
+     "f1": 656849,
+     "f2": 1693033
+    },
+    {
+     "pair": "to_french|double",
+     "outer": "to_french",
+     "inner": "double",
+     "n": 12,
+     "acc": 0.16666666666666666,
+     "cont": 0.12378436635170016,
+     "c_inner": 0.25,
+     "c_outer": 0.0,
+     "f12": 476,
+     "f1": 656849,
+     "f2": 1564747
+    },
+    {
+     "pair": "to_french|next_day",
+     "outer": "to_french",
+     "inner": "next_day",
+     "n": 7,
+     "acc": 0.0,
+     "cont": 0.011124866371648017,
+     "c_inner": 0.14285714285714285,
+     "c_outer": 0.14285714285714285,
+     "f12": 288,
+     "f1": 656849,
+     "f2": 580608
+    },
+    {
+     "pair": "to_french|opposite",
+     "outer": "to_french",
+     "inner": "opposite",
+     "n": 30,
+     "acc": 0.06666666666666667,
+     "cont": 0.10871775077816623,
+     "c_inner": 0.3333333333333333,
+     "c_outer": 0.2,
+     "f12": 535,
+     "f1": 656849,
+     "f2": 731191
+    },
+    {
+     "pair": "to_french|successor",
+     "outer": "to_french",
+     "inner": "successor",
+     "n": 12,
+     "acc": 0.25,
+     "cont": 0.21280571777655266,
+     "c_inner": 0.3333333333333333,
+     "c_outer": 0.0,
+     "f12": 72,
+     "f1": 656849,
+     "f2": 151912
+    }
+   ]
+  }
+ },
+ "beta1_by_size": [
+  {
+   "size": "70m",
+   "n_params": 70426624,
+   "beta1": 0.20654999800582574,
+   "ci": [
+    -0.2398756616959452,
+    0.6529756577075967
+   ],
+   "p": 0.36449862666444555
+  }
+ ],
+ "verdict": {
+  "largest_size": "70m",
+  "R4a_beta1_pos_sig": false,
+  "R4b_beta1_not_shrinking": false,
+  "R4c_low_below_high": false
+ }
+}

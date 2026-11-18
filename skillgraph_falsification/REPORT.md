@@ -112,8 +112,114 @@ whose score is at least τ, linearly interpolated; cells the paper skipped are b
 - **Strength: weak.** One family, chat-tuned models, small per-cell samples, and results
   that depend on the grader (the LLaMA-2 grader gives 1.4–2.2x the k\* of GPT-4).
 
-<!-- EXP3B -->
+## 3b. Experiment 3b: does halving excess loss let pairs catch up with singles?
 
-<!-- EXP4 -->
+This uses our own cloze data instead of Skill-Mix, and indexes scale by loss instead of
+compute. I fit L(N) = E + A·N^(−a) on the six Pythia final checkpoints, which gives
+E = 1.73. Then δ = L − E. For every model pair (M1, M2) with δ(M2) ≤ δ(M1)/2, the
+descriptive reading of Corollary 13 predicts that M2's chance-corrected accuracy on
+two-skill compositions is at least M1's chance-corrected accuracy on the single skills.
+
+![Exp 3b](figures/exp3b_pair_vs_single.png)
+
+| Pythia | L | δ = L − 1.73 | single skills (chance-corrected) | two-skill pairs (chance-corrected) |
+| --- | --- | --- | --- | --- |
+| 70m | 3.131 | 1.40 | 0.13 | −0.05 |
+| 160m | 2.653 | 0.92 | 0.45 | +0.04 |
+| 410m | 2.246 | 0.51 | 0.76 | +0.16 |
+| 1b | 2.093 | 0.36 | 0.82 | +0.25 |
+| 1.4b | 2.016 | 0.28 | 0.87 | +0.27 |
+| 2.8b | 1.923 | 0.19 | 0.91 | +0.33 |
+
+- Eight model pairs qualify. The prediction holds in 4 and fails in 4. The pre-registered
+  rule refutes only if a *majority* fail, so **by the letter it is not refuted, at the
+  narrowest possible margin**. It is not refuted with E = 1.6 either (4 of 7 hold), and it
+  is refuted with E = 1.8 (4 of 10 hold).
+- The split is systematic. The prediction holds in all four pairs where M1 is 70m, whose
+  single-skill accuracy is close to chance, so the bar is almost zero. It fails in every
+  pair where M1 has real single-skill competence (160m, 410m, 1b). For example, 2.8b has
+  4.8x less excess loss than 160m, yet its pair accuracy (0.33) is well below 160m's
+  single-skill accuracy (0.45). Composition improves steadily with scale but lags far
+  behind what the descriptive reading predicts.
+- Caveats:
+  - The fit rests on six points.
+  - Pythia 70m and 160m lose ground late in training (§2), which inflates their δ.
+  - As in §3, Corollary 13 is about the guaranteed curve, so this tests the descriptive
+    reading only.
+
+## 4. Experiment 4: does pair competence track co-occurrence in the training data?
+
+**Setup.**
+- Items:
+  - 35 two-skill compositions outer(inner(x)) over 18 checkable lexical skills, for
+    example "the first letter of the capital of France".
+  - Each is a 4-option, 3-shot cloze item, with 7–33 items per pair (818 in total).
+  - Each pair has two controls: inner(x) alone, and outer(y) with y = inner(x) given.
+- Frequencies, from Pile train via the infini-gram API:
+  - f(s) counts a skill's cue phrases;
+  - f12 counts the two skills' cues occurring within 100 tokens of each other.
+- Models: the six Pythia final checkpoints, all trained on the Pile.
+- Primary model: a pair-level binomial GLM with log10(f12 + 1), log10 f1, log10 f2,
+  c_inner and c_outer as predictors.
+
+![Exp 4](figures/exp4_cooccurrence.png)
+
+| Pythia | params | L | inner | outer | pair | β1 [95% CI] (pre-reg.) | quasi-binomial p | permutation p | low − high tercile [95% CI] | ρ(acc, f12) raw | errors that skip the inner step |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 70m | 70M | 3.131 | 0.33 | 0.36 | 0.22 | +0.21 [−0.24, +0.65] | 0.54 | 0.64 | +0.00 [−0.08, +0.09] | −0.44 | 39% |
+| 160m | 162M | 2.653 | 0.58 | 0.60 | 0.28 | +0.57 [+0.16, +0.97] | 0.07 | 0.16 | −0.06 [−0.15, +0.02] | −0.23 | 48% |
+| 410m | 405M | 2.246 | 0.87 | 0.77 | 0.37 | +1.68 [+1.22, +2.14] | 0.001 | 0.009 | −0.19 [−0.33, −0.04] | −0.14 | 70% |
+| 1b | 1.0B | 2.093 | 0.91 | 0.82 | 0.44 | +1.98 [+1.51, +2.45] | <0.001 | <0.001 | −0.19 [−0.36, −0.01] | −0.02 | 65% |
+| 1.4b | 1.4B | 2.016 | 0.96 | 0.85 | 0.45 | +2.09 [+1.58, +2.59] | <0.001 | <0.001 | −0.17 [−0.34, +0.00] | +0.18 | 74% |
+| 2.8b | 2.8B | 1.923 | 0.99 | 0.88 | 0.50 | +2.37 [+1.83, +2.92] | <0.001 | 0.001 | −0.18 [−0.36, +0.02] | +0.28 | 66% |
+
+Pre-registered verdicts at the largest size (2.8b):
+
+- **R4a (β1 > 0, p < 0.05): met.** β1 = +2.37 log-odds per 10x co-occurrence.
+- **R4b (β1 does not shrink with size): met.** The slope of β1 on log10 parameters is
+  +1.43 (p < 0.001), and β1 rises at every step from 70m to 2.8b.
+- **R4c (low-co-occurrence tercile below high, after controls): narrowly missed** at 2.8b,
+  where the CI reaches +0.02. It is met at 410m and 1b.
+
+Exploratory checks, added after seeing the numbers:
+
+- The pair-level data are overdispersed (Pearson χ²/df = 3.9–5.1 from 410m up). With
+  quasi-binomial errors, β1 stays significant from 410m up (p ≤ 0.001).
+- A Freedman–Lane permutation test agrees (p ≤ 0.009 from 410m up).
+- The item-level logit with pair-clustered errors agrees (2.8b: +2.15, 95% CI +1.04 to
+  +3.26).
+- From 410m up, dropping all pairs that use any one of the 18 skills never changes the
+  sign. At 1.4b and 2.8b it never removes significance.
+
+Limits on interpretation:
+
+- **The effect is conditional.** Raw ρ(pair accuracy, f12) runs from −0.44 to +0.28.
+  Co-occurrence correlates strongly with the single-skill frequencies (ρ = 0.78). β1
+  measures co-occurrence *beyond* what those frequencies predict, which is close to the
+  PMI of the two cue sets.
+- **The magnitude depends on how co-occurrence is counted.** The pre-registration did not
+  fix the engine's `max_clause_freq`. At the default of 50k, AND counts are approximate and
+  10 of 35 are zero. I re-queried at the API maximum of 500k when collecting counts, before
+  any Exp 4 regression was run, and used that as primary. With the default counts, β1 has
+  the same sign but is about 10x smaller (2.8b: +0.17, p = 0.03), peaks at 1b, and its
+  slope on size is +0.22 (p = 0.21).
+- Cue co-occurrence is a crude stand-in for "texts that use both skills". It may also track
+  how natural or semantically related a composition is.
+- Scale is small: 35 pairs, one corpus, CPU-scale models up to 2.8B.
+
+How the models fail: from 410m up, 65–74% of wrong answers on pairs are outer(x), the
+answer you get by skipping the inner step. That option makes up only 22% of all
+distractors; it appears in 67% of items. Answers that stop at the intermediate inner(x)
+are 2–6% (10% of distractors). The rest (23–33%) are unrelated distractors.
+The models usually have both skills (inner 0.87–0.99, outer 0.77–0.88) but do not chain
+them.
+
+**Verdict.** At the largest size, two of three pre-registered criteria are met, and the
+third misses narrowly. Beyond what single-skill frequency and competence explain, pair
+competence rises with how often the two skills' cues occur together, and the effect grows
+with scale. The skill-graph model assumes skills combine in random k-tuples, which leaves
+no room for a pair-specific effect, so this result runs against it. Because the
+co-occurrence proxy is crude and the effect size depends on how counts are taken, this is
+moderate evidence, not decisive.
 
 <!-- CAVEATS -->

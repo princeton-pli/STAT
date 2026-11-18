@@ -83,6 +83,14 @@ def _theta_grid(theta):
 
 
 def competence_lb(alpha, k, theta):
+    """Best guaranteed competence on >= (1-alpha) of the skill measure. A guarantee for a
+    larger set (smaller alpha') also holds here, so take the max over alpha' <= alpha."""
+    vals = [_competence_lb_at(a, k, theta) for a in np.linspace(0.02, alpha, 8)]
+    vals = [v for v in vals if v is not None]
+    return max(vals) if vals else None
+
+
+def _competence_lb_at(alpha, k, theta):
     best = None
     for t in _theta_grid(theta):
         b = min_beta(alpha, k, t)
@@ -182,7 +190,8 @@ def main():
             # best competence lower bound for 80% of measure
             vac.append({"k": k, "theta": theta, "tightest_alpha": a,
                         "competence_lb_on_80pct": competence_lb(0.2, k, theta),
-                        "competence_lb_on_50pct": competence_lb(0.5, k, theta)})
+                        "competence_lb_on_50pct": max(competence_lb(0.5, k, theta) or 0.0,
+                                                      competence_lb(0.2, k, theta) or 0.0)})
     res["vacuity_map"] = vac
 
     # 2-3. Exact Zipf construction vs the theorem

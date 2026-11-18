@@ -1,0 +1,770 @@
+{
+ "rows": [
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 1.526315789473684,
+   "lo": 1.0,
+   "hi": 1.526315789473684,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 1.641025641025641,
+   "lo": 1.0,
+   "hi": 1.641025641025641,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 1.6944444444444444,
+   "lo": 1.0,
+   "hi": 1.6944444444444444,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "GPT-3.5-turbo",
+   "kstar": 2.090909090909091,
+   "lo": 2.090909090909091,
+   "hi": 2.090909090909091,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "GPT-4",
+   "kstar": 4.125,
+   "lo": 4.125,
+   "hi": 4.125,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 1.7894736842105263,
+   "lo": 1.0,
+   "hi": 1.7894736842105263,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 1.9615384615384615,
+   "lo": 1.0,
+   "hi": 1.9615384615384615,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 2.1153846153846154,
+   "lo": 2.1153846153846154,
+   "hi": 2.1153846153846154,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "GPT-3.5-turbo",
+   "kstar": 2.8484848484848486,
+   "lo": 2.8484848484848486,
+   "hi": 2.8484848484848486,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "GPT-4",
+   "kstar": 6.137931034482759,
+   "lo": 6.137931034482759,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 1.9473684210526316,
+   "lo": 1.0,
+   "hi": 1.9473684210526316,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 2.7058823529411766,
+   "lo": 2.7058823529411766,
+   "hi": 2.7058823529411766,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 2.6923076923076925,
+   "lo": 2.6923076923076925,
+   "hi": 2.6923076923076925,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "GPT-3.5-turbo",
+   "kstar": 3.833333333333333,
+   "lo": 3.833333333333333,
+   "hi": 3.833333333333333,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "GPT-4",
+   "kstar": 6.655172413793103,
+   "lo": 6.655172413793103,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 1.5617977528089888,
+   "lo": 1.0,
+   "hi": 1.5617977528089888,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 1.7692307692307692,
+   "lo": 1.0,
+   "hi": 1.7692307692307692,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 1.6944444444444444,
+   "lo": 1.0,
+   "hi": 1.6944444444444444,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "GPT-3.5-turbo",
+   "kstar": 2.2857142857142856,
+   "lo": 2.2857142857142856,
+   "hi": 2.2857142857142856,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "GPT-4",
+   "kstar": 4.294117647058823,
+   "lo": 4.294117647058823,
+   "hi": 4.294117647058823,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 1.8426966292134832,
+   "lo": 1.0,
+   "hi": 1.8426966292134832,
+   "note": "p(2)<tau: assumed p(1)=1 (upper bound)"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 2.333333333333333,
+   "lo": 2.333333333333333,
+   "hi": 2.333333333333333,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 2.130434782608696,
+   "lo": 2.130434782608696,
+   "hi": 2.130434782608696,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "GPT-3.5-turbo",
+   "kstar": 3.0,
+   "lo": 3.0,
+   "hi": 3.0,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "GPT-4",
+   "kstar": 6.137931034482759,
+   "lo": 6.137931034482759,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 2.1,
+   "lo": 2.1,
+   "hi": 2.1,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 2.833333333333333,
+   "lo": 2.833333333333333,
+   "hi": 2.833333333333333,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 2.782608695652174,
+   "lo": 2.782608695652174,
+   "hi": 2.782608695652174,
+   "note": ""
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "GPT-3.5-turbo",
+   "kstar": 5.375,
+   "lo": 5.375,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "GPT-4",
+   "kstar": 6.655172413793103,
+   "lo": 6.655172413793103,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 2.1500000000000004,
+   "lo": 2.1500000000000004,
+   "hi": 2.1500000000000004,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 2.4333333333333336,
+   "lo": 2.4333333333333336,
+   "hi": 2.4333333333333336,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 2.9302325581395348,
+   "lo": 2.9302325581395348,
+   "hi": 2.9302325581395348,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "GPT-3.5-turbo",
+   "kstar": 3.1500000000000004,
+   "lo": 3.1500000000000004,
+   "hi": 3.1500000000000004,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "model": "GPT-4",
+   "kstar": 5.361111111111111,
+   "lo": 5.361111111111111,
+   "hi": 5.361111111111111,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 3.4,
+   "lo": 3.4,
+   "hi": 3.4,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 4.4,
+   "lo": 4.4,
+   "hi": 4.4,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 4.555555555555555,
+   "lo": 4.555555555555555,
+   "hi": 4.555555555555555,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "GPT-3.5-turbo",
+   "kstar": 4.615384615384616,
+   "lo": 4.615384615384616,
+   "hi": 4.615384615384616,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "model": "GPT-4",
+   "kstar": 6.074074074074074,
+   "lo": 6.074074074074074,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 4.230769230769231,
+   "lo": 4.230769230769231,
+   "hi": 5.0,
+   "note": "p(5) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 5.230769230769231,
+   "lo": 5.230769230769231,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 5.230769230769231,
+   "lo": 5.230769230769231,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "GPT-3.5-turbo",
+   "kstar": 5.5,
+   "lo": 5.5,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "model": "GPT-4",
+   "kstar": 6.62962962962963,
+   "lo": 6.62962962962963,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 3.0,
+   "lo": 3.0,
+   "hi": 3.0,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 3.65,
+   "lo": 3.65,
+   "hi": 3.65,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 3.0,
+   "lo": 3.0,
+   "hi": 3.0,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "GPT-3.5-turbo",
+   "kstar": 3.1500000000000004,
+   "lo": 3.1500000000000004,
+   "hi": 3.1500000000000004,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "model": "GPT-4",
+   "kstar": 5.5,
+   "lo": 5.5,
+   "hi": 5.5,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 3.6756756756756754,
+   "lo": 3.6756756756756754,
+   "hi": 3.6756756756756754,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 4.6923076923076925,
+   "lo": 4.6923076923076925,
+   "hi": 4.6923076923076925,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 4.916666666666667,
+   "lo": 4.916666666666667,
+   "hi": 4.916666666666667,
+   "note": ""
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "GPT-3.5-turbo",
+   "kstar": 5.375,
+   "lo": 5.375,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "model": "GPT-4",
+   "kstar": 6.242424242424242,
+   "lo": 6.242424242424242,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-7B-Chat",
+   "kstar": 4.230769230769231,
+   "lo": 4.230769230769231,
+   "hi": 5.0,
+   "note": "p(5) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-13B-Chat",
+   "kstar": 5.411764705882353,
+   "lo": 5.411764705882353,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "LLaMA-2-70B-Chat",
+   "kstar": 5.565217391304348,
+   "lo": 5.565217391304348,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "GPT-3.5-turbo",
+   "kstar": 5.75,
+   "lo": 5.75,
+   "hi": 6.0,
+   "note": "p(6) not reported: bounded"
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "model": "GPT-4",
+   "kstar": 6.696969696969697,
+   "lo": 6.696969696969697,
+   "hi": 7.0,
+   "note": "p(7) not reported: bounded"
+  }
+ ],
+ "rates": [
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "k7": 1.526315789473684,
+   "k70": 1.6944444444444444,
+   "ratio": 1.110153256704981,
+   "rate_per_decade": 0.15075885443658749,
+   "rate_lo": -0.6100534816839864,
+   "rate_hi": 0.7608123361205739,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "k7": 1.7894736842105263,
+   "k70": 2.1153846153846154,
+   "ratio": 1.1821266968325792,
+   "rate_per_decade": 0.24138466757681357,
+   "rate_lo": 0.24138466757681357,
+   "rate_hi": 1.0809199953835675,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "k7": 1.9473684210526316,
+   "k70": 2.6923076923076925,
+   "ratio": 1.3825363825363826,
+   "rate_per_decade": 0.46731744661851005,
+   "rate_lo": 0.46731744661851005,
+   "rate_hi": 1.4288432988038744,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "k7": 1.5617977528089888,
+   "k70": 1.6944444444444444,
+   "ratio": 1.0849320543565149,
+   "rate_per_decade": 0.11760469436346432,
+   "rate_lo": -0.6432076417571096,
+   "rate_hi": 0.7608123361205739,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "k7": 1.8426966292134832,
+   "k70": 2.130434782608696,
+   "ratio": 1.156150583244963,
+   "rate_per_decade": 0.20932931440650956,
+   "rate_lo": 0.20932931440650956,
+   "rate_hi": 1.0911478880581955,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "GPT-4",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "k7": 2.1,
+   "k70": 2.782608695652174,
+   "ratio": 1.3250517598343685,
+   "rate_per_decade": 0.40604871605158915,
+   "rate_lo": 0.40604871605158915,
+   "rate_hi": 0.40604871605158915,
+   "refutes_doubling(<0.5)": true,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.5,
+   "k7": 2.1500000000000004,
+   "k70": 2.9302325581395348,
+   "ratio": 1.362898864250946,
+   "rate_per_decade": 0.44667850898308253,
+   "rate_lo": 0.44667850898308253,
+   "rate_hi": 0.44667850898308253,
+   "refutes_doubling(<0.5)": true,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.25,
+   "k7": 3.4,
+   "k70": 4.555555555555555,
+   "ratio": 1.3398692810457515,
+   "rate_per_decade": 0.42209225681279416,
+   "rate_lo": 0.42209225681279416,
+   "rate_hi": 0.42209225681279416,
+   "refutes_doubling(<0.5)": true,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "full_marks",
+   "tau": 0.1,
+   "k7": 4.230769230769231,
+   "k70": 5.230769230769231,
+   "ratio": 1.2363636363636363,
+   "rate_per_decade": 0.30610312772567977,
+   "rate_lo": 0.06509502822188498,
+   "rate_hi": 0.5040425053375888,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.5,
+   "k7": 3.0,
+   "k70": 3.0,
+   "ratio": 1.0,
+   "rate_per_decade": 0.0,
+   "rate_lo": 0.0,
+   "rate_hi": 0.0,
+   "refutes_doubling(<0.5)": true,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.25,
+   "k7": 3.6756756756756754,
+   "k70": 4.916666666666667,
+   "ratio": 1.337622549019608,
+   "rate_per_decade": 0.41967107301929574,
+   "rate_lo": 0.41967107301929574,
+   "rate_hi": 0.41967107301929574,
+   "refutes_doubling(<0.5)": true,
+   "point_below_0.5": true
+  },
+  {
+   "grader": "LLaMA-2-70B",
+   "metric": "all_skills",
+   "tau": 0.1,
+   "k7": 4.230769230769231,
+   "k70": 5.565217391304348,
+   "ratio": 1.3154150197628458,
+   "rate_per_decade": 0.39551804855941963,
+   "rate_lo": 0.1545099490556248,
+   "rate_hi": 0.5040425053375888,
+   "refutes_doubling(<0.5)": false,
+   "point_below_0.5": true
+  }
+ ],
+ "chinchilla": {
+  "excess_7B": 0.33030125970011365,
+  "excess_70B": 0.231138260185065,
+  "excess_ratio": 1.4290202731285249,
+  "predicted_kstar_ratio_loss_indexed": 1.4290202731285249,
+  "predicted_rate_loss_indexed": 0.5150263837077104,
+  "compute_optimal_10x_excess_ratio": 1.4153451216278061
+ }
+}

@@ -64,13 +64,20 @@ class LM:
             ids[i, :len(x)] = torch.tensor(x)
             att[i, :len(x)] = 1
         h = self.body(input_ids=ids, attention_mask=att).last_hidden_state
-        out = []
-        for i, x in enumerate(batch_ids):
-            n = len(x)
-            lg = self._logits(h[i, :n - 1])
-            lp = F.log_softmax(lg, dim=-1)
-            tgt = torch.tensor(x[1:])
-            out.append(lp.gather(1, tgt[:, None])[:, 0].tolist())
+        # gather all real (position -> next token) pairs, then one fp32 head pass in chunks;
+        # log p = logit[target] - logsumexp(logits)  (identical to log_softmax + gather)
+        sel = att[:, 1:].bool()
+        hs = h[:, :-1][sel]
+        tg = ids[:, 1:][sel]
+        lps = []
+        for j in range(0, hs.shape[0], 2048):
+            lg = self._logits(hs[j:j + 2048])
+            lps.append(lg.gather(1, tg[j:j + 2048, None])[:, 0] - torch.logsumexp(lg, dim=-1))
+        flat = torch.cat(lps).tolist()
+        out, k = [], 0
+        for x in batch_ids:
+            out.append(flat[k:k + len(x) - 1])
+            k += len(x) - 1
         return out
 
     @torch.inference_mode()
@@ -100,9 +107,21 @@ class LM:
         del self.model, self.body, self.W
         gc.collect()
         if delete_files:
-            # remove the snapshot's blobs so disk does not fill up across checkpoints
-            repo_dir = os.path.join(CACHE, "models--" + self.repo.replace("/", "--"))
-            shutil.rmtree(repo_dir, ignore_errors=True)
+            delete_snapshot(path)
+
+
+def delete_snapshot(path):
+    """Remove one revision's snapshot and the blobs it links to (other prefetched revisions of
+    the same repo stay intact), so disk does not fill up across checkpoints."""
+    if not path or not os.path.isdir(path):
+        return
+    for f in os.listdir(path):
+        p = os.path.join(path, f)
+        if os.path.islink(p):
+            blob = os.path.realpath(p)
+            if os.path.exists(blob):
+                os.remove(blob)
+    shutil.rmtree(path, ignore_errors=True)
 
 
 def mean_nll_windows(lm, docs_ids, ctx=1024, batch=4):

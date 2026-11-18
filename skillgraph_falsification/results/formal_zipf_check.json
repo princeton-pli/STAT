@@ -9447,43 +9447,43 @@
    "k": 2,
    "theta": 0.01,
    "tightest_alpha": 0.006882767913503204,
-   "competence_lb_on_80pct": 0.45397658632297233,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_80pct": 0.7898517700620847,
+   "competence_lb_on_50pct": 0.7898517700620847
   },
   {
    "k": 2,
    "theta": 0.02,
    "tightest_alpha": 0.014620251193375117,
-   "competence_lb_on_80pct": 0.41317791846307705,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_80pct": 0.7273180535406993,
+   "competence_lb_on_50pct": 0.7273180535406993
   },
   {
    "k": 2,
    "theta": 0.05,
    "tightest_alpha": 0.039565376879086414,
-   "competence_lb_on_80pct": 0.43539319071328375,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_80pct": 0.5994077602833945,
+   "competence_lb_on_50pct": 0.5994077602833945
   },
   {
    "k": 2,
    "theta": 0.1,
    "tightest_alpha": 0.0840440584082365,
-   "competence_lb_on_80pct": 0.42924027005473053,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_80pct": 0.4369194911358488,
+   "competence_lb_on_50pct": 0.4369194911358488
   },
   {
    "k": 2,
    "theta": 0.2,
    "tightest_alpha": 0.18339358619087254,
    "competence_lb_on_80pct": 0.07195860713918656,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_50pct": 0.27558730335818105
   },
   {
    "k": 2,
    "theta": 0.3,
    "tightest_alpha": 0.2897585449125326,
    "competence_lb_on_80pct": 0.0,
-   "competence_lb_on_50pct": 0.0
+   "competence_lb_on_50pct": 0.14309065728108106
   },
   {
    "k": 2,
@@ -9511,28 +9511,28 @@
    "theta": 0.01,
    "tightest_alpha": 0.003706794477633461,
    "competence_lb_on_80pct": 0.9518480282059385,
-   "competence_lb_on_50pct": 0.6812189134389037
+   "competence_lb_on_50pct": 0.9562965424533245
   },
   {
    "k": 4,
    "theta": 0.02,
    "tightest_alpha": 0.00787390582775484,
    "competence_lb_on_80pct": 0.9078508939994218,
-   "competence_lb_on_50pct": 0.6650184377471096
+   "competence_lb_on_50pct": 0.9158832935279102
   },
   {
    "k": 4,
    "theta": 0.05,
    "tightest_alpha": 0.02188951338275838,
    "competence_lb_on_80pct": 0.7864013416484535,
-   "competence_lb_on_50pct": 0.677311920386456
+   "competence_lb_on_50pct": 0.8625978093945799
   },
   {
    "k": 4,
    "theta": 0.1,
    "tightest_alpha": 0.05040621303019953,
    "competence_lb_on_80pct": 0.6034657225795866,
-   "competence_lb_on_50pct": 0.6795891855971867
+   "competence_lb_on_50pct": 0.7691697242115012
   },
   {
    "k": 4,
@@ -9574,7 +9574,7 @@
    "theta": 0.01,
    "tightest_alpha": 0.0018917469955813022,
    "competence_lb_on_80pct": 0.9625102641774524,
-   "competence_lb_on_50pct": 0.9481045173818604
+   "competence_lb_on_50pct": 0.9775018426313689
   },
   {
    "k": 8,

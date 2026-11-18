@@ -1,0 +1,578 @@
+{
+ "index": "v4_piletrain_llama",
+ "max_diff_tokens": 100,
+ "max_clause_freq": 50000,
+ "single": {
+  "capital": {
+   "count": 1223613,
+   "approx": true,
+   "query": "capital of OR capital city"
+  },
+  "country_of_capital": {
+   "count": 45067,
+   "approx": false,
+   "query": "is the capital of"
+  },
+  "language": {
+   "count": 136057,
+   "approx": true,
+   "query": "language spoken OR official language"
+  },
+  "continent": {
+   "count": 1393220,
+   "approx": false,
+   "query": "continent"
+  },
+  "currency": {
+   "count": 188718,
+   "approx": true,
+   "query": "currency of OR currency is"
+  },
+  "opposite": {
+   "count": 731191,
+   "approx": true,
+   "query": "opposite of OR antonym"
+  },
+  "comparative": {
+   "count": 1871533,
+   "approx": false,
+   "query": "comparative"
+  },
+  "past_tense": {
+   "count": 91142,
+   "approx": false,
+   "query": "past tense"
+  },
+  "plural": {
+   "count": 64851,
+   "approx": true,
+   "query": "plural of OR plural form"
+  },
+  "baby_animal": {
+   "count": 10928,
+   "approx": false,
+   "query": "baby animal OR young animal"
+  },
+  "to_french": {
+   "count": 656849,
+   "approx": true,
+   "query": "in French OR French word"
+  },
+  "first_letter": {
+   "count": 165789,
+   "approx": true,
+   "query": "first letter OR starts with the letter"
+  },
+  "last_letter": {
+   "count": 79168,
+   "approx": true,
+   "query": "last letter OR ends with the letter"
+  },
+  "successor": {
+   "count": 151912,
+   "approx": true,
+   "query": "the number after OR plus one"
+  },
+  "double": {
+   "count": 1564747,
+   "approx": true,
+   "query": "two times OR twice as"
+  },
+  "number_word": {
+   "count": 445703,
+   "approx": true,
+   "query": "in words OR spelled out"
+  },
+  "next_day": {
+   "count": 580608,
+   "approx": false,
+   "query": "the day after"
+  },
+  "color_of": {
+   "count": 1693033,
+   "approx": true,
+   "query": "color of OR colour of"
+  }
+ },
+ "pair": {
+  "first_letter|capital": {
+   "count": 162,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND capital of OR capital city"
+  },
+  "first_letter|country_of_capital": {
+   "count": 19,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND is the capital of"
+  },
+  "first_letter|language": {
+   "count": 0,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND language spoken OR official language"
+  },
+  "first_letter|currency": {
+   "count": 50,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND currency of OR currency is"
+  },
+  "first_letter|opposite": {
+   "count": 96,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND opposite of OR antonym"
+  },
+  "first_letter|to_french": {
+   "count": 304,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND in French OR French word"
+  },
+  "first_letter|number_word": {
+   "count": 1270,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND in words OR spelled out"
+  },
+  "first_letter|next_day": {
+   "count": 0,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND the day after"
+  },
+  "first_letter|baby_animal": {
+   "count": 0,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND baby animal OR young animal"
+  },
+  "first_letter|color_of": {
+   "count": 0,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND color of OR colour of"
+  },
+  "first_letter|continent": {
+   "count": 184,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND continent"
+  },
+  "last_letter|capital": {
+   "count": 0,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND capital of OR capital city"
+  },
+  "last_letter|country_of_capital": {
+   "count": 3,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND is the capital of"
+  },
+  "last_letter|language": {
+   "count": 4,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND language spoken OR official language"
+  },
+  "last_letter|currency": {
+   "count": 0,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND currency of OR currency is"
+  },
+  "last_letter|opposite": {
+   "count": 23,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND opposite of OR antonym"
+  },
+  "last_letter|to_french": {
+   "count": 145,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND in French OR French word"
+  },
+  "last_letter|number_word": {
+   "count": 282,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND in words OR spelled out"
+  },
+  "last_letter|next_day": {
+   "count": 496,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND the day after"
+  },
+  "last_letter|baby_animal": {
+   "count": 0,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND baby animal OR young animal"
+  },
+  "last_letter|color_of": {
+   "count": 160,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND color of OR colour of"
+  },
+  "language|country_of_capital": {
+   "count": 179,
+   "approx": true,
+   "query": "language spoken OR official language AND is the capital of"
+  },
+  "continent|country_of_capital": {
+   "count": 111,
+   "approx": true,
+   "query": "continent AND is the capital of"
+  },
+  "currency|country_of_capital": {
+   "count": 37,
+   "approx": true,
+   "query": "currency of OR currency is AND is the capital of"
+  },
+  "comparative|opposite": {
+   "count": 0,
+   "approx": true,
+   "query": "comparative AND opposite of OR antonym"
+  },
+  "to_french|opposite": {
+   "count": 192,
+   "approx": true,
+   "query": "in French OR French word AND opposite of OR antonym"
+  },
+  "past_tense|opposite": {
+   "count": 26,
+   "approx": true,
+   "query": "past tense AND opposite of OR antonym"
+  },
+  "plural|baby_animal": {
+   "count": 0,
+   "approx": true,
+   "query": "plural of OR plural form AND baby animal OR young animal"
+  },
+  "to_french|color_of": {
+   "count": 2224,
+   "approx": true,
+   "query": "in French OR French word AND color of OR colour of"
+  },
+  "to_french|next_day": {
+   "count": 610,
+   "approx": true,
+   "query": "in French OR French word AND the day after"
+  },
+  "to_french|successor": {
+   "count": 39,
+   "approx": true,
+   "query": "in French OR French word AND the number after OR plus one"
+  },
+  "to_french|double": {
+   "count": 411,
+   "approx": true,
+   "query": "in French OR French word AND two times OR twice as"
+  },
+  "number_word|successor": {
+   "count": 54,
+   "approx": true,
+   "query": "in words OR spelled out AND the number after OR plus one"
+  },
+  "number_word|double": {
+   "count": 1394,
+   "approx": true,
+   "query": "in words OR spelled out AND two times OR twice as"
+  },
+  "successor|double": {
+   "count": 0,
+   "approx": true,
+   "query": "the number after OR plus one AND two times OR twice as"
+  }
+ },
+ "single_cue": {
+  "capital of": {
+   "count": 929714,
+   "approx": false
+  },
+  "capital city": {
+   "count": 293899,
+   "approx": false
+  },
+  "is the capital of": {
+   "count": 45067,
+   "approx": false
+  },
+  "language spoken": {
+   "count": 54931,
+   "approx": false
+  },
+  "official language": {
+   "count": 81126,
+   "approx": false
+  },
+  "continent": {
+   "count": 1393220,
+   "approx": false
+  },
+  "currency of": {
+   "count": 91677,
+   "approx": false
+  },
+  "currency is": {
+   "count": 97041,
+   "approx": false
+  },
+  "opposite of": {
+   "count": 694060,
+   "approx": false
+  },
+  "antonym": {
+   "count": 37131,
+   "approx": false
+  },
+  "comparative": {
+   "count": 1871533,
+   "approx": false
+  },
+  "past tense": {
+   "count": 91142,
+   "approx": false
+  },
+  "plural of": {
+   "count": 31587,
+   "approx": false
+  },
+  "plural form": {
+   "count": 33264,
+   "approx": false
+  },
+  "baby animal": {
+   "count": 2773,
+   "approx": false
+  },
+  "young animal": {
+   "count": 8155,
+   "approx": false
+  },
+  "in French": {
+   "count": 616170,
+   "approx": false
+  },
+  "French word": {
+   "count": 40679,
+   "approx": false
+  },
+  "first letter": {
+   "count": 162682,
+   "approx": false
+  },
+  "starts with the letter": {
+   "count": 3107,
+   "approx": false
+  },
+  "last letter": {
+   "count": 78539,
+   "approx": false
+  },
+  "ends with the letter": {
+   "count": 629,
+   "approx": false
+  },
+  "the number after": {
+   "count": 6585,
+   "approx": false
+  },
+  "plus one": {
+   "count": 145327,
+   "approx": false
+  },
+  "two times": {
+   "count": 476792,
+   "approx": false
+  },
+  "twice as": {
+   "count": 1087955,
+   "approx": false
+  },
+  "in words": {
+   "count": 257752,
+   "approx": false
+  },
+  "spelled out": {
+   "count": 187951,
+   "approx": false
+  },
+  "the day after": {
+   "count": 580608,
+   "approx": false
+  },
+  "color of": {
+   "count": 1343230,
+   "approx": false
+  },
+  "colour of": {
+   "count": 349804,
+   "approx": false
+  }
+ },
+ "pair_mcf500k": {
+  "first_letter|capital": {
+   "count": 129,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND capital of OR capital city"
+  },
+  "first_letter|country_of_capital": {
+   "count": 22,
+   "approx": false,
+   "query": "first letter OR starts with the letter AND is the capital of"
+  },
+  "first_letter|language": {
+   "count": 17,
+   "approx": false,
+   "query": "first letter OR starts with the letter AND language spoken OR official language"
+  },
+  "first_letter|currency": {
+   "count": 26,
+   "approx": false,
+   "query": "first letter OR starts with the letter AND currency of OR currency is"
+  },
+  "first_letter|opposite": {
+   "count": 140,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND opposite of OR antonym"
+  },
+  "first_letter|to_french": {
+   "count": 306,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND in French OR French word"
+  },
+  "first_letter|number_word": {
+   "count": 952,
+   "approx": false,
+   "query": "first letter OR starts with the letter AND in words OR spelled out"
+  },
+  "first_letter|next_day": {
+   "count": 157,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND the day after"
+  },
+  "first_letter|baby_animal": {
+   "count": 2,
+   "approx": false,
+   "query": "first letter OR starts with the letter AND baby animal OR young animal"
+  },
+  "first_letter|color_of": {
+   "count": 501,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND color of OR colour of"
+  },
+  "first_letter|continent": {
+   "count": 122,
+   "approx": true,
+   "query": "first letter OR starts with the letter AND continent"
+  },
+  "last_letter|capital": {
+   "count": 95,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND capital of OR capital city"
+  },
+  "last_letter|country_of_capital": {
+   "count": 5,
+   "approx": false,
+   "query": "last letter OR ends with the letter AND is the capital of"
+  },
+  "last_letter|language": {
+   "count": 11,
+   "approx": false,
+   "query": "last letter OR ends with the letter AND language spoken OR official language"
+  },
+  "last_letter|currency": {
+   "count": 26,
+   "approx": false,
+   "query": "last letter OR ends with the letter AND currency of OR currency is"
+  },
+  "last_letter|opposite": {
+   "count": 64,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND opposite of OR antonym"
+  },
+  "last_letter|to_french": {
+   "count": 202,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND in French OR French word"
+  },
+  "last_letter|number_word": {
+   "count": 219,
+   "approx": false,
+   "query": "last letter OR ends with the letter AND in words OR spelled out"
+  },
+  "last_letter|next_day": {
+   "count": 140,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND the day after"
+  },
+  "last_letter|baby_animal": {
+   "count": 0,
+   "approx": false,
+   "query": "last letter OR ends with the letter AND baby animal OR young animal"
+  },
+  "last_letter|color_of": {
+   "count": 115,
+   "approx": true,
+   "query": "last letter OR ends with the letter AND color of OR colour of"
+  },
+  "language|country_of_capital": {
+   "count": 226,
+   "approx": false,
+   "query": "language spoken OR official language AND is the capital of"
+  },
+  "continent|country_of_capital": {
+   "count": 245,
+   "approx": true,
+   "query": "continent AND is the capital of"
+  },
+  "currency|country_of_capital": {
+   "count": 41,
+   "approx": false,
+   "query": "currency of OR currency is AND is the capital of"
+  },
+  "comparative|opposite": {
+   "count": 498,
+   "approx": true,
+   "query": "comparative AND opposite of OR antonym"
+  },
+  "to_french|opposite": {
+   "count": 535,
+   "approx": true,
+   "query": "in French OR French word AND opposite of OR antonym"
+  },
+  "past_tense|opposite": {
+   "count": 190,
+   "approx": true,
+   "query": "past tense AND opposite of OR antonym"
+  },
+  "plural|baby_animal": {
+   "count": 0,
+   "approx": false,
+   "query": "plural of OR plural form AND baby animal OR young animal"
+  },
+  "to_french|color_of": {
+   "count": 756,
+   "approx": true,
+   "query": "in French OR French word AND color of OR colour of"
+  },
+  "to_french|next_day": {
+   "count": 288,
+   "approx": true,
+   "query": "in French OR French word AND the day after"
+  },
+  "to_french|successor": {
+   "count": 72,
+   "approx": true,
+   "query": "in French OR French word AND the number after OR plus one"
+  },
+  "to_french|double": {
+   "count": 476,
+   "approx": true,
+   "query": "in French OR French word AND two times OR twice as"
+  },
+  "number_word|successor": {
+   "count": 87,
+   "approx": false,
+   "query": "in words OR spelled out AND the number after OR plus one"
+  },
+  "number_word|double": {
+   "count": 434,
+   "approx": true,
+   "query": "in words OR spelled out AND two times OR twice as"
+  },
+  "successor|double": {
+   "count": 347,
+   "approx": true,
+   "query": "the number after OR plus one AND two times OR twice as"
+  }
+ },
+ "note": "'pair' uses the API default max_clause_freq=50000; 'pair_mcf500k' uses the API maximum 500000 (less subsampling of high-frequency clauses). Primary analysis uses pair_mcf500k."
+}

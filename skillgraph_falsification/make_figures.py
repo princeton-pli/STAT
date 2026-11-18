@@ -183,11 +183,15 @@ def fig_exp4():
     for (s, _), x, yv in zip(ms, dl, pair):
         ax.annotate(s, (x, yv), xytext=(0, -12), textcoords="offset points", ha="center", fontsize=7.5, color=INK2)
     ax.set_xscale("log")
+    ticks = [1.5, 1.0, 0.5, 0.2, 0.1]
+    ax.set_xticks(ticks, [f"{t:g}" for t in ticks])
+    ax.minorticks_off()
     ax.invert_xaxis()
+    ax.set_ylim(-0.13, 1.0)
     ax.set_xlabel(f"excess loss δ = L − {E:.2f}  (log scale)  →  lower")
     ax.set_ylabel("chance-corrected accuracy")
     ax.set_title("Exp 3b: Pythia final checkpoints")
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="lower right", fontsize=8)
     save(fig, "exp3b_pair_vs_single.png")
 
 

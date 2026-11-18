@@ -167,6 +167,50 @@ def theorem_envelope(per_ck, theta_key, ks=(2, 4, 8, 16), alphas=(0.05, 0.1, 0.2
     return rows
 
 
+def _bh(ps, q=0.05):
+    ps = np.asarray(ps)
+    order = np.argsort(ps)
+    ok = ps[order] <= q * np.arange(1, len(ps) + 1) / len(ps)
+    kmax = int(np.nonzero(ok)[0].max()) + 1 if ok.any() else 0
+    sig = np.zeros(len(ps), bool)
+    sig[order[:kmax]] = True
+    return sig
+
+
+def net_decline(ck, S, L, skills):
+    """Exploratory (added after seeing the window statistics, not pre-registered): compare
+    each skill at the first checkpoint with L < 4.0 against the final checkpoint and the
+    lowest-L checkpoint. Exact McNemar test on the paired items, Benjamini-Hochberg at
+    q = 0.05 over all skills. Unlike the per-window counts this is one test per skill, so
+    chance declines are controlled."""
+    i0 = next((i for i, l in enumerate(L) if l < 4.0), None)
+    if i0 is None:
+        return None
+    out = {}
+    for tag, j in (("final", len(L) - 1), ("min_L", int(np.argmin(L)))):
+        if j <= i0:
+            continue
+        rows = []
+        for k in skills:
+            a, b = S[i0][k][0], S[j][k][0]
+            lose, gain = int(((a == 1) & (b == 0)).sum()), int(((a == 0) & (b == 1)).sum())
+            p = stats.binomtest(lose, lose + gain, 0.5).pvalue if lose + gain else 1.0
+            rows.append({"skill": k, "acc_from": float(a.mean()), "acc_to": float(b.mean()),
+                         "d_acc": float(b.mean() - a.mean()), "lose": lose, "gain": gain, "p": float(p)})
+        sig = _bh([r["p"] for r in rows])
+        for r, s in zip(rows, sig):
+            r["bh_sig"] = bool(s)
+        out[tag] = {"from": ck[i0]["revision"], "to": ck[j]["revision"], "L_from": L[i0], "L_to": L[j],
+                    "n_skills": len(rows),
+                    "n_decline_bh": sum(r["bh_sig"] and r["d_acc"] < 0 for r in rows),
+                    "n_improve_bh": sum(r["bh_sig"] and r["d_acc"] > 0 for r in rows),
+                    "n_d_acc_le_flat": sum(r["d_acc"] <= FLAT for r in rows),
+                    "declining_bh": sorted(([r["skill"], round(r["acc_from"], 3), round(r["acc_to"], 3)]
+                                            for r in rows if r["bh_sig"] and r["d_acc"] < 0), key=lambda x: x[2] - x[1]),
+                    "skills": rows}
+    return out
+
+
 def analyze(repo):
     ck = load_model(repo)
     if len(ck) < 2:
@@ -214,6 +258,7 @@ def analyze(repo):
         "R2a_holds": (np.mean([w["F_pi0"] > 0.2 for w in W]) >= 0.5) if W else None,
         "spearman_L_vs_concentration(L<4)": rho,
         "R2b_holds": (rho.get("gini_err", 0) < -0.5) if rho else None,
+        "net_decline_exploratory": net_decline(ck, S, L, skills),
     }
 
 
@@ -276,6 +321,10 @@ def main():
             print(f"  thm14 envelope ({key}): binding", sum(r["binding"] for r in env), "of", len(env),
                   "| violated", sum(r["violated"] for r in env), "| by k",
                   {k: sum(r["violated"] for r in env if r["k"] == k) for k in (2, 4, 8, 16)})
+        for tag, nd in (a["net_decline_exploratory"] or {}).items():
+            print(f"  net change {nd['from']}->{nd['to']} ({tag}, L {nd['L_from']:.2f}->{nd['L_to']:.3f}): "
+                  f"BH-sig decline {nd['n_decline_bh']}, improve {nd['n_improve_bh']}, d_acc<=+0.02 {nd['n_d_acc_le_flat']} "
+                  f"of {nd['n_skills']} | {nd['declining_bh']}")
         print("  takeaway3:", a["takeaway3"])
         print("  R2a frac windows F_pi0>0.2:", a["R2a_frac_windows_Fpi0_gt_0.2"], "| rho:", a["spearman_L_vs_concentration(L<4)"])
     # family-level verdicts

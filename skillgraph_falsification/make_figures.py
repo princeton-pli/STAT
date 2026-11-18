@@ -98,13 +98,23 @@ def fig_exp2():
         ck = d[m]["checkpoints"]
         L = [c["L"] for c in ck]
         skills = sorted(ck[-1]["acc"])
+        nd = (d[m].get("net_decline_exploratory") or {}).get("final") or {}
+        worse = {s for s, _, _ in nd.get("declining_bh", [])}
         fig, axes = plt.subplots(1, 2, figsize=(9.6, 3.6), sharex=True)
         for ax, pre, chance, title in ((axes[0], "blimp:", 0.5, "BLiMP paradigms (67)"),
                                        (axes[1], "lex:", 0.25, "Lexical skills (18)")):
             ss = [s for s in skills if s.startswith(pre)]
             for s in ss:
-                ax.plot(L, [c["acc"][s] for c in ck], color=SERIES[0], alpha=0.22, lw=1)
+                if s not in worse:
+                    ax.plot(L, [c["acc"][s] for c in ck], color=SERIES[0], alpha=0.22, lw=1)
+            for s in ss:
+                if s in worse:
+                    ax.plot(L, [c["acc"][s] for c in ck], color=SERIES[1], lw=1.4,
+                            label="significantly worse at the end than at L < 4")
             ax.plot(L, [np.mean([c["acc"][s] for s in ss]) for c in ck], color=INK, lw=2.2)
+            h, lab = ax.get_legend_handles_labels()
+            if h:
+                ax.legend(h[:1], lab[:1], loc="lower left", fontsize=7.5)
             ax.axhline(chance, color=MUTED, lw=1, ls="--")
             ax.set_title(f"{NICE[m]}: {title}")
             ax.set_ylim(0, 1.02)

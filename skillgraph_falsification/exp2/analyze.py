@@ -117,6 +117,56 @@ def window_stats(A, B, n_boot=2000):
     return rows, float(F_raw), F_pi0, float(F_cons)
 
 
+COUNTS = json.loads((ROOT / "results" / "exp4_corpus_counts.json").read_text())["single"]
+
+
+def lex_weighted(rows):
+    """C1: the 18 lexical skills, count-weighted vs weighted by corpus frequency f(s) (the
+    infini-gram cue count, a proxy for mu1). Storey's pi0 with weights = weighted share of
+    p > lambda over (1 - lambda)."""
+    lx = [r for r in rows if r["skill"].startswith("lex:")]
+    out = {}
+    for name, w in (("count", np.ones(len(lx))),
+                    ("freq", np.array([COUNTS[r["skill"][4:]]["count"] for r in lx], float))):
+        w = w / w.sum()
+        out[name] = {
+            "F_raw": float(w.dot([r["d_acc"] <= FLAT for r in lx])),
+            "F_pi0": float(min(1.0, w.dot([r["p_improve"] > 0.5 for r in lx]) / 0.5)),
+            "F_cons": float(w.dot([r["d_acc_ci_hi"] < FLAT for r in lx])),
+            "n_eff": float(1 / (w ** 2).sum()),
+        }
+    return out
+
+
+def theorem_envelope(per_ck, theta_key, ks=(2, 4, 8, 16), alphas=(0.05, 0.1, 0.2, 0.3, 0.5)):
+    """Exploratory (added after seeing the Exp 2 data, not pre-registered): read each skill's
+    probe error rate as its share of failing edges and the item error rate as theta, with
+    uniform mu1 over the 85 skills. Theorem 14 then allows at most alpha of the skills to
+    have competence below lb(alpha, k, theta). Report the largest excess (share - alpha).
+    theta_key: "item_error_rate_theta" (first version run) or "skill_mean_error_theta" (the
+    theorem's own averaging identity under uniform mu1: the skill-mean failing-edge share is
+    theta; chosen after the first version was seen, so both are reported)."""
+    sys.path.insert(0, str(ROOT / "formal"))
+    from zipf_check import competence_lb
+    rows = []
+    for c in per_ck:
+        th = c[theta_key]
+        comp = np.array(list(c["acc"].values()))
+        for k in ks:
+            worst = None
+            for a in alphas:
+                lb = competence_lb(a, k, th)
+                if lb is None or lb <= 0:
+                    continue
+                share = float((comp < lb).mean())
+                if worst is None or share - a > worst["excess"]:
+                    worst = {"alpha": a, "competence_lb": lb, "share_below": share, "excess": share - a}
+            rows.append({"revision": c["revision"], "L": c["L"], "theta": th, "k": k,
+                         "binding": worst is not None, "worst": worst,
+                         "violated": bool(worst and worst["excess"] > 0)})
+    return rows
+
+
 def analyze(repo):
     ck = load_model(repo)
     if len(ck) < 2:
@@ -137,6 +187,7 @@ def analyze(repo):
                        "mean_acc_blimp": float(np.mean([acc[k] for k in skills if k.startswith("blimp:")])),
                        "mean_acc_lex": float(np.mean([acc[k] for k in skills if k.startswith("lex:")])),
                        "item_error_rate_theta": float(theta),
+                       "skill_mean_error_theta": float(err.mean()),
                        "gini_err": gini(err), "top10_share_err": concentration(err),
                        "gini_err_chance_norm": gini(err_norm), "top10_share_chance_norm": concentration(err_norm),
                        "gini_err_blimp_only": gini(bl), "top10_share_blimp_only": concentration(bl),
@@ -148,6 +199,8 @@ def analyze(repo):
                   "dL": L[i] - L[j], "F_raw": F_raw, "F_pi0": F_pi0, "F_cons": F_cons,
                   "n_declining_sig": int(sum(r["d_acc_ci_hi"] < 0 for r in rows)),
                   "skills": rows})
+    for w in W:
+        w["lex_weighted"] = lex_weighted(w["skills"])
     late = [c for c in per_ck if c["L"] < 4.0]
     rho = {}
     for key in ("gini_err", "top10_share_err", "gini_err_chance_norm", "gini_err_blimp_only"):
@@ -205,6 +258,8 @@ def main():
         if a is None:
             continue
         a["takeaway3"] = takeaway3(a)
+        a["theorem_envelope_exploratory"] = {key: theorem_envelope(a["checkpoints"], key)
+                                             for key in ("item_error_rate_theta", "skill_mean_error_theta")}
         res[m] = a
         print(f"\n== {m}: {a['n_checkpoints']} ckpts, {a['n_skills']} skills")
         for c in a["checkpoints"]:
@@ -213,6 +268,14 @@ def main():
         for w in a["windows"]:
             print(f"  window {w['from']}->{w['to']} dL={w['dL']:.3f} F_raw={w['F_raw']:.2f} "
                   f"F_pi0={w['F_pi0']:.2f} F_cons={w['F_cons']:.2f} sig_decl={w['n_declining_sig']}")
+        for w in a["windows"]:
+            lw = w["lex_weighted"]
+            print(f"  lex {w['from']}->{w['to']}: count F_pi0={lw['count']['F_pi0']:.2f} F_cons={lw['count']['F_cons']:.2f}"
+                  f" | freq-weighted F_pi0={lw['freq']['F_pi0']:.2f} F_cons={lw['freq']['F_cons']:.2f} (n_eff={lw['freq']['n_eff']:.1f})")
+        for key, env in a["theorem_envelope_exploratory"].items():
+            print(f"  thm14 envelope ({key}): binding", sum(r["binding"] for r in env), "of", len(env),
+                  "| violated", sum(r["violated"] for r in env), "| by k",
+                  {k: sum(r["violated"] for r in env if r["k"] == k) for k in (2, 4, 8, 16)})
         print("  takeaway3:", a["takeaway3"])
         print("  R2a frac windows F_pi0>0.2:", a["R2a_frac_windows_Fpi0_gt_0.2"], "| rho:", a["spearman_L_vs_concentration(L<4)"])
     # family-level verdicts

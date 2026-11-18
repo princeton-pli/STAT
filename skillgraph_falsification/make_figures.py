@@ -118,29 +118,77 @@ def fig_exp4():
     p = R / "exp4_summary.json"
     if not p.exists():
         return
+    import sys
+    import statsmodels.api as sm
+    sys.path.insert(0, str(ROOT / "exp4"))
+    from analyze import design, load, pair_table
     d = json.loads(p.read_text())
+    rob = json.loads((R / "exp4_robustness.json").read_text()) if (R / "exp4_robustness.json").exists() else {}
     sizes = list(d["per_size"])
     if not sizes:
         return
-    big = d["per_size"][sizes[-1]]
-    fig, axes = plt.subplots(1, 2, figsize=(9.6, 3.6))
-    x = [math.log10(r["f12"] + 1) for r in big["rows"]]
-    y = [r["acc"] for r in big["rows"]]
-    axes[0].scatter(x, y, s=26, color=SERIES[0], edgecolor=SURF, linewidth=1.2, zorder=3)
-    axes[0].axhline(0.25, color=MUTED, lw=1, ls="--")
-    axes[0].set_xlabel("log10(1 + Pile co-occurrence of the two skills' cues)")
-    axes[0].set_ylabel("pair accuracy (4-way cloze)")
-    axes[0].set_title(f"Pythia-{sizes[-1]}: 35 skill pairs")
-    axes[0].set_ylim(0, 1.02)
+    big = sizes[-1]
+    rows = pair_table(load(big))
+    # added-variable view of beta1: accuracy residual from the no-f12 GLM (the R4c residual)
+    # against the part of log10(f12+1) not explained by the controls
+    y = np.array([[r["acc"] * r["n"], (1 - r["acc"]) * r["n"]] for r in rows])
+    m0 = sm.GLM(y, design(rows, with_f12=False), family=sm.families.Binomial()).fit()
+    ry = np.array([r["acc"] for r in rows]) - m0.fittedvalues
+    X = design(rows)
+    Z = np.delete(X, 1, axis=1)
+    rx = X[:, 1] - Z @ np.linalg.lstsq(Z, X[:, 1], rcond=None)[0]
+    fig, axes = plt.subplots(1, 2, figsize=(9.6, 3.7))
+    axes[0].scatter(rx, ry, s=28, color=SERIES[0], edgecolor=SURF, linewidth=1.2, zorder=3)
+    sl = np.polyfit(rx, ry, 1)
+    xx = np.linspace(rx.min(), rx.max(), 10)
+    axes[0].plot(xx, np.polyval(sl, xx), color=SERIES[1], lw=1.8)
+    axes[0].axhline(0, color=MUTED, lw=1)
+    axes[0].set_xlabel("log10 co-occurrence, residual on controls")
+    axes[0].set_ylabel("pair accuracy, residual on controls")
+    axes[0].set_title(f"Pythia-{big}: 35 skill pairs (added-variable view)")
     b = d["beta1_by_size"]
     xs = np.arange(len(b))
-    axes[1].errorbar(xs, [r["beta1"] for r in b], yerr=[[r["beta1"] - r["ci"][0] for r in b], [r["ci"][1] - r["beta1"] for r in b]],
-                     color=SERIES[0], marker="o", ms=5, lw=0, elinewidth=1.5, capsize=3)
+    axes[1].errorbar(xs - 0.09, [r["beta1"] for r in b],
+                     yerr=[[r["beta1"] - r["ci"][0] for r in b], [r["ci"][1] - r["beta1"] for r in b]],
+                     color=SERIES[0], marker="o", ms=5, lw=0, elinewidth=1.8, capsize=3,
+                     label="binomial GLM (pre-registered)")
+    if rob:
+        q = [rob[r["size"]]["quasi_binomial"] for r in b]
+        axes[1].errorbar(xs + 0.09, [v["beta1"] for v in q],
+                         yerr=[[v["beta1"] - v["ci"][0] for v in q], [v["ci"][1] - v["beta1"] for v in q]],
+                         color=SERIES[1], marker="s", ms=4.5, lw=0, elinewidth=1.8, capsize=3,
+                         label="quasi-binomial (overdispersion)")
     axes[1].axhline(0, color=MUTED, lw=1)
     axes[1].set_xticks(xs, [f"Pythia-{r['size']}" for r in b], rotation=30, ha="right")
     axes[1].set_ylabel("β1: log-odds per 10x co-occurrence")
     axes[1].set_title("Co-occurrence effect after controls (95% CI)")
+    axes[1].legend(loc="upper left", fontsize=8)
     save(fig, "exp4_cooccurrence.png")
+
+    # Exp 3b: chance-corrected single vs pair competence along excess loss
+    e3 = d.get("exp3b")
+    if not e3:
+        return
+    E = e3["fit"]["E"]
+    fig, ax = plt.subplots(figsize=(6.4, 3.7))
+    ms = [(s, d["per_size"][s]) for s in sizes]
+    cc = lambda a: (a - 0.25) / 0.75  # noqa: E731
+    dl = [v["L"] - E for _, v in ms]
+    single = [cc((v["mean_inner_acc"] + v["mean_outer_acc"]) / 2) for _, v in ms]
+    pair = [cc(v["mean_pair_acc"]) for _, v in ms]
+    ax.plot(dl, single, color=SERIES[0], marker="o", ms=5, label="single skill (inner/outer controls)")
+    ax.plot(dl, pair, color=SERIES[1], marker="o", ms=5, label="two-skill composition")
+    ax.plot([x / 2 for x in dl], single, color=SERIES[0], ls=":", lw=1.5,
+            label="theory: pair curve at δ/2 should reach this")
+    for (s, _), x, yv in zip(ms, dl, pair):
+        ax.annotate(s, (x, yv), xytext=(0, -12), textcoords="offset points", ha="center", fontsize=7.5, color=INK2)
+    ax.set_xscale("log")
+    ax.invert_xaxis()
+    ax.set_xlabel(f"excess loss δ = L − {E:.2f}  (log scale)  →  lower")
+    ax.set_ylabel("chance-corrected accuracy")
+    ax.set_title("Exp 3b: Pythia final checkpoints")
+    ax.legend(loc="upper left", fontsize=8)
+    save(fig, "exp3b_pair_vs_single.png")
 
 
 def fig_exp3():

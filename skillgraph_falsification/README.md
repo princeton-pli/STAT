@@ -17,8 +17,9 @@ Experimental Designs" without training any model, on a 4-core CPU.
 | `exp4/corpus_counts.py` | Pile-train skill and pair frequencies from the infini-gram API |
 | `common/lm.py`, `common/evaluate.py` | CPU scoring: bf16 body, fp32 head; Pile loss, BLiMP, cloze items |
 | `run_sweep.py` | The pre-registered checkpoint sweep (Pythia 70m–2.8b, OLMo-1B), with prefetching |
-| `exp2/analyze.py` | Windows, π̂0, error concentration, Takeaway-3 check |
+| `exp2/analyze.py` | Windows, π̂0, error concentration, Takeaway-3 check; exploratory net-change and Theorem 14 envelope checks |
 | `exp4/analyze.py` | Co-occurrence GLMs (β1), tercile test, loss-indexed pair-vs-single test (Exp 3b) |
+| `exp4/robustness.py` | Exploratory: quasi-binomial, Freedman–Lane permutation, leave-one-skill-out |
 | `exp3/skillmix_reanalysis.py` | k\* scaling from the published Skill-Mix tables |
 | `make_figures.py` | Figures in `figures/` |
 
@@ -30,8 +31,8 @@ python -m venv venv && venv/bin/pip install torch transformers safetensors huggi
 venv/bin/python exp2/prepare_data.py          # data/ (BLiMP + Pile val)
 venv/bin/python exp4/items.py                 # data/lexical_*.jsonl
 venv/bin/python exp4/corpus_counts.py         # results/exp4_corpus_counts.json
-venv/bin/python run_sweep.py                  # results/raw/*.json (about 7 h on 4 CPU cores)
-venv/bin/python exp2/analyze.py && venv/bin/python exp4/analyze.py
+venv/bin/python run_sweep.py                  # results/raw/*.json (65 checkpoints; about 10 h of scoring on 4 CPU cores, plus downloads)
+venv/bin/python exp2/analyze.py && venv/bin/python exp4/analyze.py && venv/bin/python exp4/robustness.py
 python formal/zipf_check.py && python exp3/skillmix_reanalysis.py
 venv/bin/python make_figures.py
 ```

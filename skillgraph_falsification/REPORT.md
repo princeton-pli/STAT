@@ -180,14 +180,14 @@ Pre-registered verdicts at the largest size (2.8b):
   +1.43 (p < 0.001), and β1 rises at every step from 70m to 2.8b.
 - **R4c (low-co-occurrence tercile below high, after controls): narrowly missed** at 2.8b,
   where the CI reaches +0.02. It is met at 410m and 1b.
+- **Pre-registered secondary model:** the item-level logit with pair-clustered errors
+  agrees (2.8b: +2.15, 95% CI +1.04 to +3.26).
 
 Exploratory checks, added after seeing the numbers:
 
 - The pair-level data are overdispersed (Pearson χ²/df = 3.9–5.1 from 410m up). With
   quasi-binomial errors, β1 stays significant from 410m up (p ≤ 0.001).
 - A Freedman–Lane permutation test agrees (p ≤ 0.009 from 410m up).
-- The item-level logit with pair-clustered errors agrees (2.8b: +2.15, 95% CI +1.04 to
-  +3.26).
 - From 410m up, dropping all pairs that use any one of the 18 skills never changes the
   sign. At 1.4b and 2.8b it never removes significance.
 
